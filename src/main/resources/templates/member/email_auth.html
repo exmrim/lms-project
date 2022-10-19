@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>auth</h1>
+	<div th:replace="/fragments/common.html :: fragment-body-menu"></div>
+	<div th:if="${result eq true}">
+		<h1>auth Complete</h1>
+	</div>
+	<div th:if="${result eq false}">
+		<h1>auth Fail</h1>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Administrator Course Register Page</title>
+<style>
+	.detail table{
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	.detail table th, .detail table td {
+		border: solid 1px black; 
+	}
+	
+	.buttons {
+		margin-top: 20px;
+		text-align: center;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function() {
+		
+		
+	});
+	
+</script>
+
+</head>
+<body>
+	<h1>Administrator Course Register Page</h1>
+	<div th:replace="/fragments/common.html :: fragment-admin-body-menu"></div>
+
+	<div class="detail">
+		<form id="submitForm" method="post" enctype="multipart/form-data">
+			<table>
+			<tbody>
+				<tr>
+					<th>Course Category</th>
+					<td>
+						<select name="categoryId" required>
+							<option value="">select</option>
+							<option
+							 th:selected="${detail.categoryId == x.id}"
+							 th:each="x : ${category}" th:value="${x.id}" th:text="${x.categoryName}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>Course Name</th>
+					<td><input th:value="${detail.subject}" type="text" name="subject" required placeholder="course name"/></td>
+				</tr>
+				<tr>
+					<th>Keyword</th>
+					<td><input th:value="${detail.keyword}" type="text" name="keyword" required placeholder="keyword"/></td>
+				</tr>
+				<tr>
+					<th>Summary</th>
+					<td><textarea th:text="${detail.summary}" name="summary" required placeholder="summary"></textarea></td>
+				</tr>
+				<tr>
+					<th>Contents</th>
+					<td><textarea th:text="${detail.contents}" type="text" name="contents" required placeholder="contents"></textarea></td>
+				</tr>
+				<tr>
+					<th>Price</th>
+					<td><input th:value="${detail.price}" type="text" name="price" required placeholder="price"/></td>
+				</tr>
+				<tr>
+					<th>Sale-Price</th>
+					<td><input th:value="${detail.salePrice}" type="text" name="salePrice" required placeholder="salePrice"/></td>
+				</tr>
+				<tr>
+					<th>Sale End Date</th>
+					<td><input th:value="${detail.saleEndDt}" type="text" name="saleEndDtText" placeholder="saleEndDt"/></td>
+				</tr>
+				<tr>
+					<th>File Upload</th>
+					<td>
+						<input type="file" name="file"/>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+			<div class="buttons">
+				<button th:if="${!isEditMode}" type="submit">Register</button>
+				<button th:if="${isEditMode}" type="submit">Update</button>
+				<a href="/admin/course/list.do">Course List Page</a>
+			</div>
+		</form>
+		
+	</div>
+	
+</body>
+</html>
